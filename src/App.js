@@ -15,13 +15,22 @@ function App() {
       })
 
   }
+  const handleRegistration = event => {
+    console.log('clicked');
+    event.preventDefault();
+  }
   return (
     <div className="App">
-      <form>
+      <form onSubmit={handleRegistration}>
         <h3>Please Register</h3>
         <label htmlFor="email">Email</label>
         <input type="text" name="email" />
+        <br />
         <label htmlFor="password">Password</label>
+        <input type="password" name="" id="" />
+        <br />
+        <br />
+        <input type="submit" value="Registration" />
       </form>
       <br /><br /><br />
       <div>---------------------------</div>
