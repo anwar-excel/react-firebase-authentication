@@ -10,6 +10,7 @@ function App() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isLogin, setIsLogin] = useState(false);
   const auth = getAuth();
   const handleGoogleSignIn = () => {
     signInWithPopup(auth, googleProvider)
@@ -20,7 +21,7 @@ function App() {
 
   }
   const toggleLogin = event => {
-    console.log(event.target.checked);
+    setIsLogin(event.target.checked);
   }
   const handleEmailChange = event => {
 
@@ -48,7 +49,7 @@ function App() {
   return (
     <div className="mx-5">
       <form onSubmit={handleRegistration}>
-        <h3 className="text-primary">Please Register</h3>
+        <h3 className="text-primary">Please {isLogin ? 'Login' : 'Register'}</h3>
         <div className="row mb-3">
           <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Email</label>
           <div className="col-sm-10">
@@ -74,7 +75,7 @@ function App() {
           </div>
         </div>
         <div className="row mb-3 text-danger">{error}</div>
-        <button type="submit" className="btn btn-primary">Register</button>
+        <button type="submit" className="btn btn-primary">{isLogin ? 'Login' : 'Register'}</button>
       </form>
       <br /><br /><br />
       <div>---------------------------</div>
