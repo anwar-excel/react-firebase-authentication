@@ -19,6 +19,9 @@ function App() {
       })
 
   }
+  const toggleLogin = event => {
+    console.log(event.target.checked);
+  }
   const handleEmailChange = event => {
 
     setEmail(event.target.value);
@@ -63,9 +66,9 @@ function App() {
         <div className="row mb-3">
           <div className="col-sm-10 offset-sm-2">
             <div className="form-check">
-              <input className="form-check-input" type="checkbox" id="gridCheck1" />
+              <input onChange={toggleLogin} className="form-check-input" type="checkbox" id="gridCheck1" />
               <label className="form-check-label" htmlFor="gridCheck1">
-                Example checkbox
+                Already Registraed
               </label>
             </div>
           </div>
