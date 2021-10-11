@@ -1,4 +1,5 @@
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { useState } from "react";
 import './App.css';
 import initializeAuthentication from './Firebase/firebase.init';
 
@@ -6,6 +7,8 @@ initializeAuthentication();
 const googleProvider = new GoogleAuthProvider();
 
 function App() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const auth = getAuth();
   const handleGoogleSignIn = () => {
     signInWithPopup(auth, googleProvider)
@@ -16,7 +19,11 @@ function App() {
 
   }
   const handleEmailChange = event => {
-    console.log(event.target.value);
+    setEmail(event.target.value);
+
+  }
+  const handlePasswordChange = event => {
+    setPassword(event.target.value);
 
   }
   const handleRegistration = event => {
@@ -30,14 +37,14 @@ function App() {
         <div class="row mb-3">
           <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
           <div class="col-sm-10">
-            <input onChange={handleEmailChange} type="email" class="form-control" id="inputEmail3" />
             <input onBlur={handleEmailChange} type="email" class="form-control" id="inputEmail3" />
+            {/* <input onBlur={handleEmailChange} type="email" class="form-control" id="inputEmail3" /> */}
           </div>
         </div>
         <div class="row mb-3">
           <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
           <div class="col-sm-10">
-            <input type="password" class="form-control" id="inputPassword3" />
+            <input onBlur={handlePasswordChange} type="password" class="form-control" id="inputPassword3" />
           </div>
         </div>
 
