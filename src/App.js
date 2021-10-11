@@ -15,6 +15,10 @@ function App() {
       })
 
   }
+  const handleEmailChange = event => {
+    console.log(event.target.value);
+
+  }
   const handleRegistration = event => {
     console.log('clicked');
     event.preventDefault();
@@ -22,10 +26,12 @@ function App() {
   return (
     <div className="mx-5">
       <form onSubmit={handleRegistration}>
+        <h3 className="text-primary">Please Register</h3>
         <div class="row mb-3">
           <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
           <div class="col-sm-10">
-            <input type="email" class="form-control" id="inputEmail3" />
+            <input onChange={handleEmailChange} type="email" class="form-control" id="inputEmail3" />
+            <input onBlur={handleEmailChange} type="email" class="form-control" id="inputEmail3" />
           </div>
         </div>
         <div class="row mb-3">
