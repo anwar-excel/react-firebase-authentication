@@ -9,6 +9,7 @@ const googleProvider = new GoogleAuthProvider();
 function App() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const auth = getAuth();
   const handleGoogleSignIn = () => {
     signInWithPopup(auth, googleProvider)
@@ -28,13 +29,18 @@ function App() {
 
   }
   const handleRegistration = event => {
+    event.preventDefault();
     console.log(email, password);
+    if (password.length < 6) {
+      setError('Password Must b at least 6 characters long')
+      return;
+    }
     createUserWithEmailAndPassword(auth, email, password)
       .then(result => {
         const user = result.user;
         console.log(user);
       })
-    event.preventDefault();
+
   }
   return (
     <div className="mx-5">
@@ -64,6 +70,7 @@ function App() {
             </div>
           </div>
         </div>
+        <div className="row mb-3 text-danger">{error}</div>
         <button type="submit" className="btn btn-primary">Register</button>
       </form>
       <br /><br /><br />
